@@ -33,7 +33,7 @@ Explore the RabbitMQ website.
 
 1. Run listening_worker.py
 
-Will it terminate on its own? How do you know? 
+Will it terminate on its own? How do you know? No, the user can terminate with CTRL+C. It says so in the code.
 
 ## Ready for Work
 
