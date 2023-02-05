@@ -15,13 +15,17 @@ import webbrowser
 import csv
 import time
 
-def offer_rabbitmq_admin_site():
-    """Offer to open the RabbitMQ Admin website"""
-    ans = input("Would you like to monitor RabbitMQ queues? y or n ")
-    print()
-    if ans.lower() == "y":
-        webbrowser.open_new("http://localhost:15672/#/queues")
+
+def open_rabbitmq_admin_site():
+    """Define variable to determine whether to open RabbitMQ site"""
+    show_offer = False
+    """Offer to open the RabbitMQ Admin website if show_offer = True"""
+    if show_offer == True:
+        ans = input("Would you like to monitor RabbitMQ queues? y or n ")
         print()
+        if ans.lower() == "y":
+            webbrowser.open_new("http://localhost:15672/#/queues")
+            print()
 
 def send_message(host: str, queue_name: str, message: str):
     """
@@ -57,6 +61,8 @@ def send_message(host: str, queue_name: str, message: str):
         conn.close()
 
 if __name__ == "__main__":
+    # open the RabbitMQ Admin site
+    open_rabbitmq_admin_site()
     # read from a file to get some fake data
     with open("tasks.csv", "r") as input_file:
         tasks = (input_file)
@@ -69,7 +75,7 @@ if __name__ == "__main__":
             task = ",".join(row)
 
             # send the task to the queue
-            send_message("localhost", "task_queue", task)
+            send_message("localhost", "task_queue3", task)
 
             # sleep for a few seconds
             time.sleep(3)
