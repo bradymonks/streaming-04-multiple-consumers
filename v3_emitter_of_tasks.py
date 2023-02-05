@@ -12,6 +12,8 @@ Brady Monks
 import pika
 import sys
 import webbrowser
+import csv
+import time
 
 def offer_rabbitmq_admin_site():
     """Offer to open the RabbitMQ Admin website"""
@@ -54,17 +56,20 @@ def send_message(host: str, queue_name: str, message: str):
         # close the connection to the server
         conn.close()
 
-# Standard Python idiom to indicate main program entry point
-# This allows us to import this module and use its functions
-# without executing the code below.
-# If this is the program being run, then execute the code below
-if __name__ == "__main__":  
-    # ask the user if they'd like to open the RabbitMQ Admin site
-    offer_rabbitmq_admin_site()
-    # get the message from the command line
-    # if no arguments are provided, use the default message
-    # use the join method to convert the list of arguments into a string
-    # join by the space character inside the quotes
-    message = " ".join(sys.argv[1:]) or "Second task....."
-    # send the message to the queue
-    send_message("localhost","task_queue2",message)
+if __name__ == "__main__":
+    # read from a file to get some fake data
+    with open("tasks.csv", "r") as input_file:
+        tasks = (input_file)
+
+        # create a csv reader for our comma delimited data
+        reader = csv.reader(tasks, delimiter=",")
+
+        for row in reader:
+            # read a task from the file
+            task = ",".join(row)
+
+            # send the task to the queue
+            send_message("localhost", "task_queue", task)
+
+            # sleep for a few seconds
+            time.sleep(3)
