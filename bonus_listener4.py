@@ -11,12 +11,27 @@ Brady Monks
 import pika
 import sys
 import time
+import csv
+
+# clear working csv file
+with open('column1data.csv', 'w') as file:
+    # Create a csv writer object
+    writer = csv.writer(file)
+    # Write any new data you want to the file
+    writer.writerow([''])
 
 # define a callback function to be called when a message is received
 def callback(ch, method, properties, body):
     """ Define behavior on getting a message."""
     # decode the binary message body to a string
     print(f" [x] Received {body.decode()}")
+    # capitalize the message
+    message = body.decode().capitalize()
+    # write message to column1data.csv
+    with open("column1data.csv", "a") as file:
+        writer = csv.writer(file)
+        writer.writerow([message])
+    
     # simulate work by sleeping for the number of dots in the message
     time.sleep(body.count(b"."))
     # when done with task, tell the user

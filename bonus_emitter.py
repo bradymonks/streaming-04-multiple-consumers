@@ -16,6 +16,7 @@ import csv
 import time
 
 
+
 def open_rabbitmq_admin_site():
     """Define variable to determine whether to open RabbitMQ site"""
     show_offer = False
