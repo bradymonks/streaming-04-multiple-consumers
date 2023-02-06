@@ -18,7 +18,7 @@ import time
 
 def open_rabbitmq_admin_site():
     """Define variable to determine whether to open RabbitMQ site"""
-    show_offer = False
+    show_offer = True
     """Offer to open the RabbitMQ Admin website if show_offer = True"""
     if show_offer == True:
         ans = input("Would you like to monitor RabbitMQ queues? y or n ")
