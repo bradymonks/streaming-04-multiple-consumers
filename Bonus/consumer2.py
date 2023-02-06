@@ -14,7 +14,7 @@ import time
 import csv
 
 # clear working csv file
-with open('column2data.csv', 'w') as file:
+with open('datacolumn2.csv', 'w') as file:
     # Create a csv writer object
     writer = csv.writer(file)
     # Write any new data you want to the file
@@ -26,9 +26,9 @@ def callback(ch, method, properties, body):
     # decode the binary message body to an integer and print message
     message = int(body.decode())
     print(f" [x] Received {message}")
-    # Multiply the message by 2 and write it to column2data.csv
+    # Multiply the message by 2 and write it to datacolumn2.csv
     result = message * 2
-    with open("column2data.csv", "a") as file:
+    with open("datacolumn2.csv", "a") as file:
         writer = csv.writer(file)
         writer.writerow([result])
     
