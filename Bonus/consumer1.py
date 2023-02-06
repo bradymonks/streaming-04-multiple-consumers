@@ -14,7 +14,7 @@ import time
 import csv
 
 # clear working csv file
-with open('column1data.csv', 'w') as file:
+with open('datacolumn1.csv', 'w') as file:
     # Create a csv writer object
     writer = csv.writer(file)
     # Write any new data you want to the file
@@ -27,8 +27,8 @@ def callback(ch, method, properties, body):
     print(f" [x] Received {body.decode()}")
     # capitalize the message
     message = body.decode().capitalize()
-    # write message to column1data.csv
-    with open("column1data.csv", "a") as file:
+    # write message to datacolumn1.csv
+    with open("datacolumn1.csv", "a") as file:
         writer = csv.writer(file)
         writer.writerow([message])
     
