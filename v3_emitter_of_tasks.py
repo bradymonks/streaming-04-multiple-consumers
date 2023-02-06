@@ -75,7 +75,7 @@ if __name__ == "__main__":
             task = ",".join(row)
 
             # send the task to the queue
-            send_message("localhost", "task_queue3", task)
+            send_message("localhost", "GoodQueue", task)
 
             # sleep for a few seconds
             time.sleep(3)
